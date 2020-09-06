@@ -1,0 +1,16 @@
+{
+    "port": {
+        "router": "7788"
+    },
+    "database": {
+        "mysql": "root:@tcp(127.0.0.1:3306)/kaskus?parseTime=true"
+    },
+    "auth": {
+        "secret": "kunciRahasia"
+    },
+    "asset": {
+        "avatar": "D:/Golang/src/kaskus/asset/avatar/IMG_",
+        "images": "D:/Golang/src/kaskus/asset/images/IMG_",
+        "files": "D:/Golang/src/kaskus/asset/files/"
+    }
+}
