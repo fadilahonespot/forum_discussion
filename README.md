@@ -2,7 +2,7 @@
 Ini adalah projek untuk jawaban soal nomer 1, menggunakan golang untuk membuat Rest API dan MYSQL sebagai databasenya
 
 ## Skema Database
-![SkemaDatabase](https://github.com/fadilahonespot/forum_discussion/blob/master/kaskus/skema_database.png)
+![SkemaDatabase](https://github.com/fadilahonespot/forum_discussion/blob/master/skema_kaskus.png)
 
 ## Library
 - Gin (router)
@@ -26,7 +26,7 @@ Maka otomatis akan tergenerate table pada database
 - lakukan registrasi
 - lalu setelah berhasil registrasi lakukan login, maka bila berhasil akan mendapatkan kode token
 - Maka masukan token tersebut pada bagian authorrization dan pilih bearer token untuk mengakses endpoin-endpoin lainnya
-![inputToken](https://github.com/fadilahonespot/forum_discussion/blob/master/kaskus/input_token.PNG)
+![inputToken](https://github.com/fadilahonespot/forum_discussion/blob/master/authorization.PNG)
 - Untuk membuat catagory dan menghapus catagory hanya admin yang bisa melakukannya. Bila ada user mendaftar secara default tingkatannya adalah user. Untuk mengubahnya menjadi tingkatan admin bisa di ubah lewat databasenya langsung pada field role di table user.
 - Untuk keperluan testing saya sudah sertakan file json yang berisi setting endpoin-endpoin untuk di import ke postman bersamaan dengan file ini.
 
