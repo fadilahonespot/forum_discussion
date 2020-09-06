@@ -1,4 +1,6 @@
 # Untuk Jawaban Soal Nomer 1
+## Skema Database
+![SkemaDatabase](https://github.com/fadilahonespot/forum_discussion/blob/master/kaskus/skema_database.png)
 
 ## Library
 - Gin (router)
@@ -9,15 +11,45 @@
 - Gomod (depedensi)
 
 ## Setting
-lakukan penyesuaian setting database dan sesuikan destinasi folder pada komputer anda pada folder kaskus/config/config.json
+lakukan penyesuaian setting database pada bagian database dan setting destinasi file pada bagian asset di 
+```destinasi
+kaskus/config/config.json
+```
 lalu run program
 ```sh
 go run main.go
 ```
 
-Maka otomatis akan tergenerat table pada database
+Maka otomatis akan tergenerate table pada database
 - lakukan registrasi
 - lalu setelah berhasil registrasi lakukan login, maka bila berhasil akan mendapatkan kode token
-- Maka masukan token tersebut pada bagian authorizer dan pilih bearer token untuk mengakses end poin- end poin lainnya
-- Untuk membuat catagory dan menghapus catagory hanya admin yang bisa melakukannya. Bila ada user mendaftar secara default tingkatannya adalah user. Untuk mengubahnya menjadi admin bisa di lakukan lewat databasenya langsung pada table user.
-- Untuk keperluan testing saya sudah sediakan file json yang berisi end poin - end poin untuk di import ke postman bersamaan dengan file ini.
+- Maka masukan token tersebut pada bagian authorizer dan pilih bearer token untuk mengakses endpoin-endpoin lainnya
+![inputToken](https://github.com/fadilahonespot/forum_discussion/blob/master/kaskus/input_token.PNG)
+- Untuk membuat catagory dan menghapus catagory hanya admin yang bisa melakukannya. Bila ada user mendaftar secara default tingkatannya adalah user. Untuk mengubahnya menjadi admin bisa di ubah lewat databasenya langsung pada field role di table user.
+- Untuk keperluan testing saya sudah sertakan file json yang berisi setting endpoin-endpoin untuk di import ke postman bersamaan dengan file ini.
+
+## Endpoin
+
+Not Authorization
+```endpoint
+localhost:7788/register #Post
+localhost:7788/login    #Post
+```
+User Authorization
+```endpoint
+localhost:7788/user                   #Get All user
+localhost:7788/user/profile           #Get profile user
+localhost:7788/catagory               #Get all catagory
+localhost:7788/discussion             #Post Discussion
+localhost:7788/discussion/answerf/1   #Post Discussion untuk membalas diskusi tingkat pertama, angka 1 adalah id diskusi
+localhost:7788/discussion/answers/1   #Post Discussion untuk membalas diskusi tingkat kedua, angka 1 adalah id diskusi tingkat pertama
+localhost:7788/discussion             #Get all discussion
+localhost:7788/discussion/1           #Get detail discussion, angka satu adalah id diskusi
+localhost:7788/discussion/1           #Put discussion, angka 1 adalah id diskusi
+localhost:7788/discussion/1           #Delete discussion, angka 1 adalah id diskusi 
+```
+Admin Authorization
+```endpoint
+localhost:7788/catagory     #Post catagory, menambahkan katagory
+localhost:7788/catagory/4   #Delete catagory, angka 1 adalah id catagory
+```
