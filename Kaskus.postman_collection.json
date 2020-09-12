@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzIjoiJDJhJDEwJDI0TS5aQno3WkpvV3ZySGZKU0FpTXVoR255QjJBNGdMS2JrbDdMbkNwRVZGUWZWei9PZ1VhIiwidXNlcl9pZCI6MX0.K-dT4U7V607GWrSuhQqTD881vmcZRFz2L61coW1dlTg",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -44,7 +44,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzIjoiJDJhJDEwJDI0TS5aQno3WkpvV3ZySGZKU0FpTXVoR255QjJBNGdMS2JrbDdMbkNwRVZGUWZWei9PZ1VhIiwidXNlcl9pZCI6MX0.K-dT4U7V607GWrSuhQqTD881vmcZRFz2L61coW1dlTg",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -543,7 +543,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"ahmad.fadilah7@gmail.com\",\r\n    \"password\": \"fadilah\"\r\n}",
+					"raw": "{\r\n    \"email\": \"sandi@gmail.com\",\r\n    \"password\": \"sandi123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
