@@ -10,6 +10,7 @@ type DiscussionUsecase interface {
 	AddCatagory(catagory *model.Catagory) (*model.Catagory, error)
 	DeleteCatagory(id int) error
 	ViewCatagoryById(id int)(*model.Catagory, error)
+	UpdateCatagoryById(id int, catagory *model.Catagory) (*model.Catagory, error)
 	ViewAllCatagory()(*[]model.Catagory, error)
 	ViewAllDiscussion() (*[]model.Discussion, error)
 	AddDiscussion(c *gin.Context, discussion *model.Discussion)(*model.DiscussionPost, error)

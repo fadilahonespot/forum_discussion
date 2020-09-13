@@ -8,7 +8,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-
 type DiscussionRepoImpl struct {
 	DB *gorm.DB
 }
@@ -30,7 +29,7 @@ func (e *DiscussionRepoImpl) AddCatagory(catagory *model.Catagory) (*model.Catag
 	return catagory, nil
 }
 
-func (e *DiscussionRepoImpl) ViewAllCatagory()(*[]model.Catagory, error) {
+func (e *DiscussionRepoImpl) ViewAllCatagory() (*[]model.Catagory, error) {
 	var catagories []model.Catagory
 	err := e.DB.Find(&catagories).Error
 	if err != nil {
@@ -40,7 +39,7 @@ func (e *DiscussionRepoImpl) ViewAllCatagory()(*[]model.Catagory, error) {
 	return &catagories, nil
 }
 
-func (e *DiscussionRepoImpl) ViewCatagoryById(id int)(*model.Catagory, error) {
+func (e *DiscussionRepoImpl) ViewCatagoryById(id int) (*model.Catagory, error) {
 	var catagory = model.Catagory{}
 	err := e.DB.Table("catagory").Where("id = ?", id).First(&catagory).Error
 	if err != nil {
@@ -50,7 +49,17 @@ func (e *DiscussionRepoImpl) ViewCatagoryById(id int)(*model.Catagory, error) {
 	return &catagory, nil
 }
 
-func (e *DiscussionRepoImpl) DeleteCatagory(id int) error {
+func (e *DiscussionRepoImpl) UpdateCatagoryById(id int, catagory *model.Catagory) (*model.Catagory, error) {
+	var upCatagory = model.Catagory{}
+	err := e.DB.Table("catagory").Where("id = ?", id).First(&upCatagory).Update(&catagory).Error
+	if err != nil {
+		fmt.Printf("[DiscussionRepoImpl.UpdateCatagorById] error execute query %v \n", err)
+		return nil, fmt.Errorf("failed to update catagory")
+	}
+	return &upCatagory, nil
+}
+
+func (e *DiscussionRepoImpl) DeleteCatagoryById(id int) error {
 	var catagory = model.Catagory{}
 	err := e.DB.Table("catagory").Where("id = ?", id).First(&catagory).Delete(&catagory).Error
 	if err != nil {
@@ -148,7 +157,7 @@ func (e *DiscussionRepoImpl) DeleteDiscussionSecondByID(id int, tx *gorm.DB) err
 	}
 	return nil
 }
-func (e *DiscussionRepoImpl) AddDiscussionImages(discussionImages *model.DiscussionImages, tx *gorm.DB)(*model.DiscussionImages, error) {
+func (e *DiscussionRepoImpl) AddDiscussionImages(discussionImages *model.DiscussionImages, tx *gorm.DB) (*model.DiscussionImages, error) {
 	err := tx.Save(&discussionImages).Error
 	if err != nil {
 		fmt.Printf("[DiscussionRepoImpl.AdddiscussionImages] error execute query %v \n", err)
@@ -157,7 +166,7 @@ func (e *DiscussionRepoImpl) AddDiscussionImages(discussionImages *model.Discuss
 	return discussionImages, nil
 }
 
-func (e *DiscussionRepoImpl) AddDiscussionFiles(discussionFiles *model.DiscussionFiles, tx *gorm.DB)(*model.DiscussionFiles, error) {
+func (e *DiscussionRepoImpl) AddDiscussionFiles(discussionFiles *model.DiscussionFiles, tx *gorm.DB) (*model.DiscussionFiles, error) {
 	err := tx.Save(&discussionFiles).Error
 	if err != nil {
 		fmt.Printf("[DiscussionRepoImpl.AddDiscussionFiles] error execute query %v \n", err)
@@ -166,7 +175,7 @@ func (e *DiscussionRepoImpl) AddDiscussionFiles(discussionFiles *model.Discussio
 	return discussionFiles, nil
 }
 
-func (e *DiscussionRepoImpl) AddDiscussionFisrt(discussionFirst *model.DiscussionFirst)(*model.DiscussionFirst, error) {
+func (e *DiscussionRepoImpl) AddDiscussionFisrt(discussionFirst *model.DiscussionFirst) (*model.DiscussionFirst, error) {
 	err := e.DB.Save(&discussionFirst).Error
 	if err != nil {
 		fmt.Printf("[DiscussionRepoImpl.AddDiscussionFirst] error execute query %v \n", err)
@@ -175,10 +184,10 @@ func (e *DiscussionRepoImpl) AddDiscussionFisrt(discussionFirst *model.Discussio
 	return discussionFirst, nil
 }
 
-func (e *DiscussionRepoImpl) AddDiscussionSecond(discussionSecond *model.DiscussionSecond)(*model.DiscussionSecond, error) {
+func (e *DiscussionRepoImpl) AddDiscussionSecond(discussionSecond *model.DiscussionSecond) (*model.DiscussionSecond, error) {
 	err := e.DB.Save(&discussionSecond).Error
 	if err != nil {
-		fmt.Printf("[DiscussionRepoImpl.AddDiscussionSecond] error execute query %v \n" , err)
+		fmt.Printf("[DiscussionRepoImpl.AddDiscussionSecond] error execute query %v \n", err)
 		return nil, fmt.Errorf("failed to answer discussion")
 	}
 	return discussionSecond, nil

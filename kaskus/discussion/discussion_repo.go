@@ -10,7 +10,8 @@ type DiscussionRepo interface {
 	BeginTrans() *gorm.DB
 	ViewAllDiscussion() (*[]model.Discussion, error)
 	AddCatagory(catagory *model.Catagory) (*model.Catagory, error)
-	DeleteCatagory(id int) error
+	DeleteCatagoryById(id int) error
+	UpdateCatagoryById(id int, catagory *model.Catagory) (*model.Catagory, error)
 	ViewAllCatagory()(*[]model.Catagory, error)
 	ViewCatagoryById(id int)(*model.Catagory, error)
 	AddDiscussion(discussion *model.Discussion, tx *gorm.DB) (*model.Discussion, error)

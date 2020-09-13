@@ -26,7 +26,7 @@ func (e *DiscussionUsecaseImpl) AddCatagory(catagory *model.Catagory) (*model.Ca
 }
 
 func (e *DiscussionUsecaseImpl) DeleteCatagory(id int) error {
-	return e.discussionRepo.DeleteCatagory(id)
+	return e.discussionRepo.DeleteCatagoryById(id)
 }
 
 func (e *DiscussionUsecaseImpl) ViewAllCatagory() (*[]model.Catagory, error) {
@@ -35,6 +35,10 @@ func (e *DiscussionUsecaseImpl) ViewAllCatagory() (*[]model.Catagory, error) {
 
 func (e *DiscussionUsecaseImpl) ViewCatagoryById(id int) (*model.Catagory, error) {
 	return e.discussionRepo.ViewCatagoryById(id)
+}
+
+func (e *DiscussionUsecaseImpl) UpdateCatagoryById(id int, catagory *model.Catagory) (*model.Catagory, error) {
+	return e.discussionRepo.UpdateCatagoryById(id, catagory)
 }
 
 func fileUploadDiscussionMultiPart(c *gin.Context) ([]string, []string, error) {

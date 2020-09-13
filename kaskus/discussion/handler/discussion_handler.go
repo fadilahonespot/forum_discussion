@@ -25,6 +25,7 @@ func CreateDiscussionHandler(r *gin.Engine, discussionUsecase discussion.Discuss
 	r2 := r.Group("/catagory").Use(middleware.TokenVerifikasiMiddleware())
 	r2.POST("", discussionHandler.addCatagory)
 	r2.GET("", discussionHandler.viewAllCatagory)
+	r2.PUT("/:idCatagory", discussionHandler.editCatagory)
 	r2.DELETE("/:id", discussionHandler.deleteCatagory)
 
 	r3 := r.Group("/discussion").Use(middleware.TokenVerifikasiMiddleware())
@@ -102,6 +103,43 @@ func (e *DiscussionHandler) viewAllCatagory(c *gin.Context) {
 		return
 	}
 	utils.HandleSuccess(c, catagories)
+}
+
+func (e *DiscussionHandler) editCatagory(c *gin.Context) {
+	user, err := e.userUsecase.AdminOnly(c)
+	if err != nil {
+		utils.HandleError(c, http.StatusUnauthorized, err.Error())
+		return
+	}
+	idStr := c.Param("idCatagory")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		utils.HandleError(c, http.StatusBadRequest, "id has be number")
+		return
+	}
+	var catagory = model.Catagory{}
+	err = c.Bind(&catagory)
+	if err != nil {
+		fmt.Printf("[DiscussionHandler.UpdateCatagory] error bind data %v \n", err)
+		utils.HandleError(c, http.StatusInternalServerError, "Oopss server somting wrong")
+		return
+	}
+	_, err = e.discussionUsecase.ViewCatagoryById(id)
+	if err != nil {
+		utils.HandleError(c, http.StatusNotFound, err.Error())
+		return
+	}
+	if catagory.ID != 0 || catagory.UserID != 0 {
+		utils.HandleError(c, http.StatusBadRequest, "input is not allowed")
+		return
+	}
+	catagory.UserID = user.ID
+	upCatagory, err := e.discussionUsecase.UpdateCatagoryById(id, &catagory)
+	if err != nil {
+		utils.HandleError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	utils.HandleSuccess(c, upCatagory)
 }
 
 func (e *DiscussionHandler) addDiscussion(c *gin.Context) {
