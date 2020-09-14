@@ -53,5 +53,6 @@ localhost:7788/discussion/1           #Delete discussion, angka 1 adalah id disk
 Admin Authorization
 ```endpoint
 localhost:7788/catagory     #Post catagory, menambahkan katagory
+localhost:7788/catagory/1   #Put catagory, angka 1 adalah id catagory
 localhost:7788/catagory/1   #Delete catagory, angka 1 adalah id catagory
 ```

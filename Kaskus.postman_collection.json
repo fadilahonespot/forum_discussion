@@ -139,6 +139,44 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "edit catagory",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"catagory\": \"teknologi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:7788/catagory/1",
+									"host": [
+										"localhost"
+									],
+									"port": "7788",
+									"path": [
+										"catagory",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -543,7 +581,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"sandi@gmail.com\",\r\n    \"password\": \"sandi123\"\r\n}",
+					"raw": "{\r\n    \"email\": \"ahmad.fadilah@gmail.com\",\r\n    \"password\": \"fadilah\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
